@@ -60,14 +60,14 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
             public void onClick(View v) {
 
                 counter += 1;
-                if (counter == 5) {
+                if (counter == 10) {
                     txt_timeSet.setText("No alarms set. You're waking by yourself for now.");
                     Alarm.stopRingtone();
                     dismissAlarm();
                     counter = 0;
                     btn_dismiss.setVisibility(View.INVISIBLE);
                 } else {
-                    int tapNum = 5;
+                    int tapNum = 10;
                     int tapLeft = tapNum - counter;
                     txt_timeSet.setText("Keeping Clicking! Only " + tapLeft + " taps to go." );
                 }
@@ -184,75 +184,3 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//        Intent intent = new Intent(MainActivity.this, Alarm.class);
-//        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(),0, intent,0);
-//        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-//
-//
-//        Log.i("HOUR = ", "" + hourOfDay);
-//        Log.i("MIN = ", "" + minute);
-//
-//        Log.i("CURRENT HOUR = ", "" + c.get(Calendar.HOUR_OF_DAY));
-//        Log.i("CURRENT MIN = ", "" + c.get(Calendar.MINUTE));
-//
-//        Log.i("the time is = ", "" + setTime);
-//        Log.i("the CURRENT time is = ", "" + System.currentTimeMillis());
-//
-//        am.setExact(AlarmManager.RTC_WAKEUP,setTime, pi);
-
-
-//        Intent intent = new Intent(MainActivity.this, Alarm.class);
-//        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(),0, intent,0);
-//        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-//
-//        Log.i("the time is = ", "" + setTime);
-//        Log.i("the CURRENT time is = ", "" + System.currentTimeMillis());
-//
-//        am.setExact(AlarmManager.RTC_WAKEUP,setTime, pi);
-
-
-
-//        c.setTimeInMillis(System.currentTimeMillis());
-//        long tenSecondsFromNow = System.currentTimeMillis() + 60 * 1000;
-//        Log.i("TEST TIME = ", "" + tenSecondsFromNow);
-//        long timeDiff = setTime - System.currentTimeMillis();
-//1586526689450.00
-
-
-
-
-//
-//    public void MillisecondsToDate()
-//
-//    {
-//        // Create a DateFormatter object for displaying date information.
-//        DateFormat formatter = new DateFormat("dd/MM/yyyy hh:mm:ss.SSS");
-//
-//        // Get date and time information in milliseconds
-//        long now = System.currentTimeMillis();
-//
-//        // Create a calendar object that will convert the date and time value
-//        // in milliseconds to date. We use the setTimeInMillis() method of the
-//        // Calendar object.
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(now);
-//
-//        calendar.setTimeInMillis(System.currentTimeMillis());
-//        Log.i("CONVERSION", "" + formatter.format(calendar.getTime()));
-//
-//    }
