@@ -20,6 +20,7 @@ import android.widget.TimePicker;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -81,18 +82,43 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
      }
 
     void dismissAlarm() {
-
         AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(MainActivity.this, Alarm.class);
         PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(),0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
         am.cancel(pi);
-
     }
 
 
     public void showTimePickerDialog() {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
+
+    private String getDate(long milli) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.setTimeInMillis(milli);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+        String dateString = simpleDateFormat.format(calendar.getTimeInMillis());
+        Log.i("CONVERSION", "" + dateString);
+
+        return dateString;
+    }
+
+    private String getTimeAndDate(long milli) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.setTimeInMillis(milli);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a 'on' EEE, MMM d");
+        String dateString = simpleDateFormat.format(calendar.getTimeInMillis());
+        Log.i("CONVERSION =", "" + dateString);
+
+        return dateString;
     }
 
     @Override
@@ -117,6 +143,18 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
 
 
         long setTime = c.getTimeInMillis();
+
+        if (setTime > System.currentTimeMillis()) {
+            scheduleAlarm(setTime);
+            String whatDate = getTimeAndDate(setTime);
+            txt_timeSet.setText("Alarm set! Hypnos will wake you at " + whatDate);
+
+        } else { // set time for next day
+            long nextDay = 24 * 60 * 60 * 1000;
+            long finTime = setTime + nextDay;
+            String whatDate = getTimeAndDate(finTime);
+            txt_timeSet.setText("Sweet! Hypnos will wake you at " + whatDate);
+        }
 //
 //        Intent intent = new Intent(MainActivity.this, Alarm.class);
 //        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(),0, intent,0);
@@ -134,9 +172,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
 //
 //        am.setExact(AlarmManager.RTC_WAKEUP,setTime, pi);
 
-        scheduleAlarm(setTime);
 
-        txt_timeSet.setText(finalTime);
         btn_dismiss.setVisibility(View.VISIBLE);
 
     }
@@ -178,3 +214,27 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
 //        Log.i("TEST TIME = ", "" + tenSecondsFromNow);
 //        long timeDiff = setTime - System.currentTimeMillis();
 //1586526689450.00
+
+
+
+
+//
+//    public void MillisecondsToDate()
+//
+//    {
+//        // Create a DateFormatter object for displaying date information.
+//        DateFormat formatter = new DateFormat("dd/MM/yyyy hh:mm:ss.SSS");
+//
+//        // Get date and time information in milliseconds
+//        long now = System.currentTimeMillis();
+//
+//        // Create a calendar object that will convert the date and time value
+//        // in milliseconds to date. We use the setTimeInMillis() method of the
+//        // Calendar object.
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(now);
+//
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        Log.i("CONVERSION", "" + formatter.format(calendar.getTime()));
+//
+//    }
