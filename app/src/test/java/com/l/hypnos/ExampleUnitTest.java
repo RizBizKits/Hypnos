@@ -2,7 +2,11 @@ package com.l.hypnos;
 
 import org.junit.Test;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import static org.junit.Assert.*;
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -14,4 +18,13 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+    @Test
+    public void testTimeToMilli_isCorrect() {
+        MainActivity mn = new MainActivity();
+        String actual = mn.getTimeAndDate(100);
+        String expected = "10:00 PM on Sat, Apr 11";
+        assertEquals("Turn milliseconds to date format", expected, actual);
+    }
+
 }

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
                 } else {
                     int tapNum = 10;
                     int tapLeft = tapNum - counter;
-                    txt_timeSet.setText("Keeping Clicking! Only " + tapLeft + " taps to go." );
+                    txt_timeSet.setText("Keep Clicking! Only " + tapLeft + " taps to go." );
                 }
 
             }
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
     }
 
     // DATE FORMATTER
-    private String getTimeAndDate(long milli) {
+    public String getTimeAndDate(long milli) {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
 
 
         long setTime = c.getTimeInMillis();
+        Log.i("SET TIME =  ", "" + setTime);
 
         if (setTime > System.currentTimeMillis()) {
             scheduleAlarm(setTime);
