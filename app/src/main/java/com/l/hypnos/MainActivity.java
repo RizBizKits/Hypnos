@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
 
     private FloatingActionButton add_btn;
     private Button btn_dismiss;
+    private Button btn_unset;
     Calendar c = Calendar.getInstance();
     TextView txt_timeSet;
     int counter=0;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
 
         add_btn = (FloatingActionButton) findViewById(R.id.add_btn);
         btn_dismiss = (Button)findViewById(R.id.btn_dismiss);
+        btn_unset = (Button)findViewById(R.id.btn_unset);
+
         txt_timeSet = (TextView) findViewById(R.id.txt_timeSet);
         btn_dismiss.setVisibility(View.INVISIBLE);
 
@@ -57,17 +60,29 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
             public void onClick(View v) {
 
                 counter += 1;
-                if (counter >= 5) {
+                if (counter == 5) {
                     txt_timeSet.setText("No alarms set. You're waking by yourself for now.");
                     Alarm.stopRingtone();
                     dismissAlarm();
                     counter = 0;
+                    btn_dismiss.setVisibility(View.INVISIBLE);
                 } else {
                     int tapNum = 5;
                     int tapLeft = tapNum - counter;
                     txt_timeSet.setText("Keeping Clicking! Only " + tapLeft + " taps to go." );
                 }
 
+            }
+        });
+
+        btn_unset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Alarm.stopRingtone();
+                dismissAlarm();
+                txt_timeSet.setText("No alarms set. You're waking by yourself for now.");
+
+                btn_dismiss.setVisibility(View.INVISIBLE);
             }
         });
     }

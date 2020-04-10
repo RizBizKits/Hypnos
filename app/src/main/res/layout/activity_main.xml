@@ -20,7 +20,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         app:srcCompat="@drawable/plus_sign_beige"
-        android:backgroundTint="#264348"
+        android:backgroundTint="#1a2e32"
         />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:text="No alarms set. You're waking by yourself for now."
-        android:textSize="50dp"
+        android:textSize="70dp"
         android:textColor="#FCC9B9"
         android:textStyle="bold" />
 
@@ -47,8 +47,25 @@
         android:layout_below="@id/txt_timeSet"
         android:textSize="18dp"
         android:textColor="#FFFFFF"
-        android:background="#FCC9B9"
+        android:background="#faa388"
         android:text="Dismiss"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/btn_unset"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="#FFFFFF"
+        android:background="#1a2e32"
+        android:text="×"
         android:textStyle="bold"
         />
 
