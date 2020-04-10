@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,8 +17,12 @@ public class Alarm extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.i("working", "IT WORKS!!!!!!!!!!!");
         Toast.makeText(context,"Wake up",Toast.LENGTH_LONG).show();
+        Vibrator vib = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        long[] mVibratePattern = new long[]{0, 400, 200, 400};
+
+        vib.vibrate(VibrationEffect.createWaveform(mVibratePattern, 0));
+
         Uri alarmRingtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         r = RingtoneManager.getRingtone(context.getApplicationContext(), alarmRingtone);
         r.play();

@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
         add_btn = (FloatingActionButton) findViewById(R.id.add_btn);
         btn_dismiss = (Button)findViewById(R.id.btn_dismiss);
         txt_timeSet = (TextView) findViewById(R.id.txt_timeSet);
+        btn_dismiss.setVisibility(View.INVISIBLE);
 
 
         add_btn.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
         btn_dismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 counter += 1;
                 if (counter >= 5) {
                     txt_timeSet.setText("No alarms set. You're waking by yourself for now.");
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
-
+    // DATE FORMATTER
     private String getDate(long milli) {
 
         Calendar calendar = Calendar.getInstance();
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
         return dateString;
     }
 
+    // DATE FORMATTER
     private String getTimeAndDate(long milli) {
 
         Calendar calendar = Calendar.getInstance();
@@ -155,23 +158,6 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
             String whatDate = getTimeAndDate(finTime);
             txt_timeSet.setText("Sweet! Hypnos will wake you at " + whatDate);
         }
-//
-//        Intent intent = new Intent(MainActivity.this, Alarm.class);
-//        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(),0, intent,0);
-//        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-//
-//
-//        Log.i("HOUR = ", "" + hourOfDay);
-//        Log.i("MIN = ", "" + minute);
-//
-//        Log.i("CURRENT HOUR = ", "" + c.get(Calendar.HOUR_OF_DAY));
-//        Log.i("CURRENT MIN = ", "" + c.get(Calendar.MINUTE));
-//
-//        Log.i("the time is = ", "" + setTime);
-//        Log.i("the CURRENT time is = ", "" + System.currentTimeMillis());
-//
-//        am.setExact(AlarmManager.RTC_WAKEUP,setTime, pi);
-
 
         btn_dismiss.setVisibility(View.VISIBLE);
 
@@ -196,6 +182,23 @@ public class MainActivity extends AppCompatActivity  implements TimePickerDialog
 
 
 
+
+//
+//        Intent intent = new Intent(MainActivity.this, Alarm.class);
+//        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(),0, intent,0);
+//        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+//
+//
+//        Log.i("HOUR = ", "" + hourOfDay);
+//        Log.i("MIN = ", "" + minute);
+//
+//        Log.i("CURRENT HOUR = ", "" + c.get(Calendar.HOUR_OF_DAY));
+//        Log.i("CURRENT MIN = ", "" + c.get(Calendar.MINUTE));
+//
+//        Log.i("the time is = ", "" + setTime);
+//        Log.i("the CURRENT time is = ", "" + System.currentTimeMillis());
+//
+//        am.setExact(AlarmManager.RTC_WAKEUP,setTime, pi);
 
 
 //        Intent intent = new Intent(MainActivity.this, Alarm.class);
